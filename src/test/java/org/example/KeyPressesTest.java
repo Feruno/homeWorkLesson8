@@ -16,12 +16,15 @@ public class KeyPressesTest {
 
         char charPress = ' ';
 
+        String res = String.valueOf(charPress);
+
         keyPresses.clickFieldAndPressButton(charPress);
-        String res = keyPresses.showKey();
+
 
         char feedBack = keyPresses.checkChar(charPress);
         Assert.assertNotNull(""+charPress+"", feedBack);
         Assert.assertNotNull(""+res+"", feedBack);
-        System.out.println("Полученный символ: " + feedBack + " введенный символ = " + res );
+        Assert.assertEquals( String.valueOf(charPress), res);
+        System.out.println("Полученный символ: " + feedBack + " введенный символ = " + keyPresses.showKey() );
     }
 }

@@ -33,6 +33,7 @@ public class KeyPresses {
     }
 
     public String showKey() {
-        return resultKeyPress.getText();
+        String str = resultKeyPress.getText();
+        return  str.substring(13);
     }
 }

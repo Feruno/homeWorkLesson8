@@ -12,10 +12,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class AddRemoveElements {
     private  WebDriver webDriverAddRemoveElem;
 
-    private WebDriverWait driverWaitAddRemoveElem;
     private final String URI = "http://the-internet.herokuapp.com/add_remove_elements/";
-
-    private final int TIMEOUT = 30;
 
     public AddRemoveElements(WebDriver webDriver) {
         this.webDriverAddRemoveElem = webDriver;

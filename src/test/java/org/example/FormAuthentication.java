@@ -12,16 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormAuthentication {
     private final WebDriver webDriver;
-
-    private WebDriverWait driverWait;
     private final String URI = "http://the-internet.herokuapp.com/login";
-
-    private final int TIMEOUT = 30;
 
     public FormAuthentication(WebDriver webDriver) {
         this.webDriver = webDriver;
         webDriver.get(URI);
-       // driverWait = new WebDriverWait(webDriver, TIMEOUT, 500);
+
         PageFactory.initElements(webDriver, this);
     }
 
@@ -31,11 +27,13 @@ public class FormAuthentication {
     @FindBy(xpath = "//input[@id='password']")
     public WebElement passwordInput;
 
-    @FindBy(xpath = "//button") //  //button[contains(text(), ' Login')] не работает
+    @FindBy(xpath = "//button")
     public WebElement buttonLoginInput;
 
-    @FindBy(xpath = "//div[@id='flash']") //  //div[contains(text(), 'You logged into a secure area!')] другой рабочий вариант но не подходит из-за узконаправленности
+    @FindBy(xpath = "//div[@id='flash']")
     public WebElement titleFeedBack;
+
+
 
 
     public void fillLoginAndPassword(String login, String password){
@@ -47,12 +45,6 @@ public class FormAuthentication {
 
         buttonLoginInput.click();
     }
-
-
-    public void waitClickElement(WebElement element){
-        //driverWait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
 
 
 

@@ -21,7 +21,6 @@ public class FormAuthenticationPositiveTest {
 
         authent.clickButton();
 
-        authent.waitClickElement(authent.buttonLoginInput);
 
         String feedBack = authent.titleFeedBack.getText();
         Assert.assertNotNull("You logged into a secure area!", feedBack);

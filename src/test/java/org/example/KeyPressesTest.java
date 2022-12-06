@@ -14,13 +14,14 @@ public class KeyPressesTest {
         webDriberKeyPresses = new ChromeDriver();
         keyPresses = new KeyPresses(webDriberKeyPresses);
 
-        char charPress = 'b';
+        char charPress = ' ';
 
         keyPresses.clickFieldAndPressButton(charPress);
-
+        String res = keyPresses.showKey();
 
         char feedBack = keyPresses.checkChar(charPress);
         Assert.assertNotNull(""+charPress+"", feedBack);
-        System.out.println("Полученный символ: " + feedBack);
+        Assert.assertNotNull(""+res+"", feedBack);
+        System.out.println("Полученный символ: " + feedBack + " введенный символ = " + res );
     }
 }

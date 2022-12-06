@@ -16,7 +16,6 @@ public class DynamicLoadingTest {
         DynamicLoadingWebDri.buttonClick();
         DynamicLoadingWebDri.waitLoad();
 
-        //String feedBack = DynamicLoadingWebDri.waitLoad().;
         Assert.assertNotNull("Hello World!", DynamicLoadingWebDri.waitLoad());
         System.out.println("Полученное сообщение: " + DynamicLoadingWebDri.waitLoad());
     }

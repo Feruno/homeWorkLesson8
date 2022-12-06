@@ -8,18 +8,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Checkboxes {
     private  WebDriver webDriverCheckboxes;
-
-    private WebDriverWait driverWaitCheckboxes;
     private final String URI = "http://the-internet.herokuapp.com/checkboxes";
-
-    private final int TIMEOUT = 30;
 
     public Checkboxes(WebDriver webDriver) {
         this.webDriverCheckboxes = webDriver;
         webDriver.get(URI);
         PageFactory.initElements(webDriver, this);
     }
-    @FindBy(xpath = "//input[@type='checkbox']") // input[type="checkbox"]:not(:checked)
+    @FindBy(xpath = "//input[@type='checkbox'][1]")
     public WebElement clickCheckboxes;
 
     public void clickCheckbox(){

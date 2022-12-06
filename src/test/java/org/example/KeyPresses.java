@@ -9,11 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class KeyPresses {
     private WebDriver webDriverKeyPresses;
-
-    private WebDriverWait driverWaitKeyPresses;
     private final String URI = "http://the-internet.herokuapp.com/key_presses?";
 
-    private final int TIMEOUT = 30;
 
     public KeyPresses(WebDriver webDriver) {
         this.webDriverKeyPresses = webDriver;
@@ -24,11 +21,18 @@ public class KeyPresses {
     @FindBy(xpath = "//input[@id='target']")
     public WebElement clickField;
 
-    public void clickFieldAndPressButton(Character charPress){
-        clickField.sendKeys(""+ charPress +"");
+    @FindBy(xpath = "//p[contains(text(), 'You entered:')]")
+    public WebElement resultKeyPress;
+
+    public void clickFieldAndPressButton(Character charPress) {
+        clickField.sendKeys("" + charPress + "");
     }
 
-    public char checkChar(Character charPress){
+    public char checkChar(Character charPress) {
         return charPress;
+    }
+
+    public String showKey() {
+        return resultKeyPress.getText();
     }
 }

@@ -21,7 +21,6 @@ public class FormAuthenticationNegativeTestPassword {
 
         authent.clickButton();
 
-        //authent.waitClickElement(authent.okButton);
         String feedBack = authent.titleFeedBack.getText();
         Assert.assertNotNull("Your password is invalid!", feedBack);
         System.out.println("Полученное сообщение: " + feedBack);

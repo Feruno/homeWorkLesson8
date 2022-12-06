@@ -12,18 +12,11 @@ import java.time.Duration;
 
 public class DynamicLoading {
     private  WebDriver webDriverDL;
-
-    private WebDriverWait driverWaitDL;
     private final String URI = "http://the-internet.herokuapp.com/dynamic_loading/2";
-
-    private final int TIMEOUT = 30;
 
     public DynamicLoading(WebDriver webDriver) {
         this.webDriverDL = webDriver;
         webDriver.get(URI);
-        //Такой вариант ожидание у меня не работал, не смог разобраться с ошибкой
-        //IDE жалуется на инты
-        //driverWaitDL = new WebDriverWait(webDriver, 30, 500);
         PageFactory.initElements(webDriver, this);
     }
 
@@ -38,10 +31,8 @@ public class DynamicLoading {
     }
 
     public String waitLoad(){
-        //WebElement element = new WebDriverWait(webDriverDL, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id=finish]//h4")));
         WebElement element = new WebDriverWait(webDriverDL, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='finish']")));
         finishText.getText();
-        //System.out.println("локатор =  " + finishText.getText() + " WebDriverWait = " + element.getText());
         return element.getText();
 
     }

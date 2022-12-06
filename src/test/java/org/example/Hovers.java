@@ -14,31 +14,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+
 
 public class Hovers {
     private WebDriver webDriberHov;
-
-    private WebDriverWait driverWait;
     private final String URI = "http://the-internet.herokuapp.com/hovers";
-
-    private final int TIMEOUT = 30;
-
-
 
     public Hovers(WebDriver webDriver) {
         this.webDriberHov = webDriver;
         webDriver.get(URI);
-        // driverWait = new WebDriverWait(webDriver, TIMEOUT, 500);
         PageFactory.initElements(webDriver, this);
     }
-
-
     @FindBy(xpath = "//div[@class='figure'][2]")
     public WebElement hoversFigure;
-
-    @FindBy(xpath = "//div[@class='figcaption']")  //figure  figcaption
+    @FindBy(xpath = "//div[@class='figcaption']")
     public WebElement clickText;
 
 
@@ -50,15 +39,13 @@ public class Hovers {
         String feedBack = clickText.getText();
         Assert.assertNotNull("name: user", feedBack);
         System.out.println("Полученное сообщение: " + feedBack);
-        //hoversFigure.click();
+
     }
 
     public void findUser(){
-        //WebElement element = new WebDriverWait(webDriberHov, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5")));
+
         WebElement element = new WebDriverWait(webDriberHov, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a")));
         System.out.println("пользователь " + element);
-        //$$("#figure").shouldHave(CollectionCondition.size(3));
-        //$("#figure").shouldHave(Condition.text("name: user1"));
     }
 
 

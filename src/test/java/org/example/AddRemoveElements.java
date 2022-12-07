@@ -1,6 +1,7 @@
 package org.example;
 
 import com.codeborne.selenide.CollectionCondition;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,9 +23,15 @@ public class AddRemoveElements {
     @FindBy(xpath = "//button")
     public WebElement addButton;
 
+
     public void countElements(Integer numElements){
         for (int i = 0; i < numElements ; i++) {
             addButton.click();
         }
+    }
+
+    public int quantityButtons(){
+        int resAddElem = webDriverAddRemoveElem.findElements(By.xpath("//button[@class='added-manually']")).size();
+        return resAddElem;
     }
 }

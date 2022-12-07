@@ -13,8 +13,10 @@ public class HoversPositiveTest {
         webDriberHov = new ChromeDriver();
         hover = new Hovers(webDriberHov);
 
-        hover.actionsGetAct();
-        hover.findUser();
+        String userSelected= "name: user2";
+        String res = hover.actionsGetAct(userSelected);
 
+        Assert.assertEquals(res, userSelected);
+        System.out.println("Найденная пользователь " +res + " Введенный пользователь  =  "+userSelected);
     }
 }

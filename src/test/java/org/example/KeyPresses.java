@@ -24,12 +24,17 @@ public class KeyPresses {
     @FindBy(xpath = "//p[contains(text(), 'You entered:')]")
     public WebElement resultKeyPress;
 
-    public void clickFieldAndPressButton(Character charPress) {
-        clickField.sendKeys("" + charPress + "");
+    public void clickFieldAndPressSpecButton(String charPress) {
+        if (charPress.length() != 1 ){
+            clickField.sendKeys(Keys.valueOf(charPress));
+        }else {
+            clickField.sendKeys(charPress);
+        }
     }
 
-    public char checkChar(Character charPress) {
-        return charPress;
+    public String checkChar(String charPress) {
+        String str = charPress;
+        return str;
     }
 
     public String showKey() {

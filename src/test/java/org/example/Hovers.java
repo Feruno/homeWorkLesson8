@@ -2,6 +2,7 @@ package org.example;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Selenide.$;
 
 
 public class Hovers {
@@ -31,22 +33,15 @@ public class Hovers {
     public WebElement clickText;
 
 
-    public void actionsGetAct() {
+    public String actionsGetAct(String userNname) {
         Actions act = new Actions(webDriberHov);
         act.moveToElement(hoversFigure).perform();
-        webDriberHov.findElements(By.tagName("h5"));
+        String resultPText = $(hoversFigure).shouldHave(Condition.text(userNname)).getText();
 
-        String feedBack = clickText.getText();
-        Assert.assertNotNull("name: user", feedBack);
-        System.out.println("Полученное сообщение: " + feedBack);
+        System.out.println("Полученный текст = "+ resultPText);
+
+        return resultPText.substring(0,11);
 
     }
-
-    public void findUser(){
-
-        WebElement element = new WebDriverWait(webDriberHov, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a")));
-        System.out.println("пользователь " + element);
-    }
-
 
 }

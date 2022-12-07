@@ -9,8 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Tests {
     WebDriver webDriver;
+
     @Before
-    public void openBrowser(){
+    public void openBrowser() {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
     }
@@ -33,16 +34,14 @@ public class Tests {
         KeyPresses keyPresses;
         keyPresses = new KeyPresses(webDriver);
 
-        char charPress = ' ';
-        keyPresses.clickFieldAndPressButton(charPress);
-        String res = keyPresses.showKey();
+        String charPress = "LEFT";
 
-        char feedBack = keyPresses.checkChar(charPress);
-        Assert.assertNotNull(""+charPress+"", feedBack);
+        keyPresses.clickFieldAndPressSpecButton(charPress);
 
-        System.out.println("Полученный символ: " + feedBack + " введенный символ = " + res );
+        String feedBack = keyPresses.checkChar(charPress);
+        Assert.assertEquals( feedBack, charPress);
+        System.out.println("Полученный символ: " + feedBack + " введенный символ = " + keyPresses.showKey() );
     }
-
 
 
     @Test
@@ -50,9 +49,11 @@ public class Tests {
         Hovers hover;
         hover = new Hovers(webDriver);
 
-        hover.actionsGetAct();
-        hover.findUser();
+        String userSelected = "name: user2";
+        String res = hover.actionsGetAct(userSelected);
 
+        Assert.assertEquals(res, userSelected);
+        System.out.println("Введенное имя пользвателя  =  " + userSelected + " Полученное имя пользвателя " + res);
     }
 
 
@@ -69,7 +70,7 @@ public class Tests {
 
         authent.clickButton();
 
-        //authent.waitClickElement(authent.okButton);
+
         String feedBack = authent.titleFeedBack.getText();
         Assert.assertNotNull("Your username is invalid!", feedBack);
         System.out.println("Полученное сообщение: " + feedBack);
@@ -95,7 +96,6 @@ public class Tests {
     }
 
 
-
     @Test
     public void checkAuthenticationPositiveTest() {
         FormAuthentication authent;
@@ -115,7 +115,6 @@ public class Tests {
     }
 
 
-
     @Test
     public void checkCheckboxes() {
         Checkboxes checkboxes;
@@ -125,8 +124,6 @@ public class Tests {
         System.out.println("Выбран ли Checkbox:  " + checkboxes.checkStatusCheckbox());
     }
 
-
-
     @Test
     public void checkAddRemoveElements() {
         AddRemoveElements addRemoveElem;
@@ -135,13 +132,17 @@ public class Tests {
         int numElements = 10;
 
         addRemoveElem.countElements(numElements);
+        int resAddElem = addRemoveElem.quantityButtons();
+        Assert.assertEquals(resAddElem, numElements);
+
+        System.out.println("Число добавленных кнопок на страницу = " + resAddElem + " Введенное число = "+numElements);
+
     }
 
 
-
     @After
-    public void closeBrowser(){
-        if(webDriver != null){
+    public void closeBrowser() {
+        if (webDriver != null) {
             webDriver.close();
         }
     }

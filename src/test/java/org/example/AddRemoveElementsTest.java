@@ -13,8 +13,13 @@ public class AddRemoveElementsTest {
         webDriberAddRemoveElem = new ChromeDriver();
         addRemoveElem = new AddRemoveElements(webDriberAddRemoveElem);
 
-         int numElements = 10;
+        int numElements = 10;
 
-         addRemoveElem.countElements(numElements);
+        addRemoveElem.countElements(numElements);
+        int resAddElem = addRemoveElem.quantityButtons();
+        Assert.assertEquals(resAddElem, numElements);
+
+        System.out.println("Число добавленных кнопок на страницу = " + resAddElem + " Введенное число = "+numElements);
+
     }
 }
